@@ -45,14 +45,14 @@ player1 = Player("Fritz", "outside")
 
 def getRoom():
     for r in room:
-        if player1.room == r:
+        if player1.current_room == r:
             print(r)
 
 
 # * Prints the current description (the textwrap module might be useful here).
 def getDescrption():
     for value in room.keys():
-        if player1.room == value:
+        if player1.current_room == value:
             print(room[value])
 
 
@@ -64,7 +64,8 @@ whereTo = input("Where do you want to go?:")
 
 def movePlayer():
     if whereTo == "n":
-        print("North")
+        # player1.room = player1.room.n_to
+        print(room['outside'].n_to)
     elif whereTo == "s":
         print("South")
     elif whereTo == "e":
@@ -75,9 +76,8 @@ def movePlayer():
         print("Quit game!")
     else:
         print("Invalid entry")
-    getRoom()
-    getDescrption()
-
+    # getRoom()
+    # getDescrption()
 
     # Print an error message if the movement isn't allowed.
     #
