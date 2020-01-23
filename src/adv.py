@@ -44,42 +44,38 @@ player1 = Player("Fritz", "outside")
 
 
 def getRoom():
-    for r in room:
-        if player1.current_room == r:
-            print(r)
+    return player1.current_room
 
 
 # * Prints the current description (the textwrap module might be useful here).
-def getDescrption():
-    for value in room.keys():
-        if player1.current_room == value:
-            print(room[value])
-
-
 # * Waits for user input and decides what to do.
-whereTo = input("Where do you want to go?:")
+def movePlayer(current):
+    if current == "n":
+        # if room[getRoom()].n_to != "":
+        player1.set_current_room(room[str(player1.current_room).lower()].n_to)
+    elif current == "s":
+        player1.set_current_room(room[str(player1.current_room).lower()].s_to)
+    elif whereTo == "e":
+        player1.set_current_room(room[str(player1.current_room)].e_to)
+    elif current == "w":
+        player1.set_current_room(room[str(player1.current_room)].w_to)
+    elif current == "q":
+        print("Exited game!")
+    else:
+        print("Invalid entry")
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 
 
-def movePlayer():
-    if whereTo == "n":
-        # player1.room = player1.room.n_to
-        print(room['outside'].n_to)
-    elif whereTo == "s":
-        print("South")
-    elif whereTo == "e":
-        print("East")
-    elif whereTo == "w":
-        print("West")
-    elif whereTo == "q":
-        print("Quit game!")
-    else:
-        print("Invalid entry")
-    # getRoom()
-    # getDescrption()
+whereTo = ""
 
-    # Print an error message if the movement isn't allowed.
-    #
-    # If the user enters "q", quit the game.
-movePlayer()
+while whereTo is not "q":
+    whereTo = input("Where do you want to go?:")
+    print(getRoom())
+    movePlayer(whereTo)
+    print(getRoom())
+
+
+# Print an error message if the movement isn't allowed.
+#
+# If the user enters "q", quit the game.

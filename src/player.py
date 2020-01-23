@@ -7,5 +7,17 @@ class Player:
         self.name = name
         self.current_room = current_room
 
-    # def __str__(self):
-    #     return f'{str(self.name)}'
+    def __str__(self):
+        return str(self.name)
+
+    def get_name(self):
+        return self.name
+
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def get_current_room(self):
+        return self.current_room
+
+    def set_current_room(self, new_current_room):
+        self.current_room = new_current_room
