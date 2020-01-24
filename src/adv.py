@@ -1,5 +1,8 @@
 from room import Room
 from player import Player
+
+
+
 # Declare all the rooms
 
 room = {
@@ -47,8 +50,16 @@ def getRoom():
     return player1.current_room
 
 
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
+def getItems():
+    return player1.current_room.get_items
+
+    # * Prints the current description (the textwrap module might be useful here).
+    # * Waits for user input and decides what to do.
+
+
+print(room['outside'])
+
+
 def movePlayer(current):
 
     if current == "n":

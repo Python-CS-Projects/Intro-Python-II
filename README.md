@@ -40,8 +40,6 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
 
   - The room should have `name` and `description` attributes.
 
-<!-- TODO: -->
-
 - The room should also have `n_to`, `s_to`, `e_to`, and `w_to` attributes
   which point to the room in that respective direction.
 
@@ -68,10 +66,10 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
   - The `Room` class should be extended with a `list` that holds the `Item`s
     that are currently in that room.
 
-<!-- TODO: -->
-
 - Add functionality to the main loop that prints out all the items that are
   visible to the player when they are in that room.
+
+<!-- TODO: -->
 
 - Add capability to add `Item`s to the player's inventory. The inventory can
   also be a `list` of items "in" the player, similar to how `Item`s can be in a

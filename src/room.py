@@ -1,9 +1,10 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from item import Item
 
 
 class Room:
-    def __init__(self, name,  description, n_to=None, s_to=None, e_to=None, w_to=None, items=[]):
+    def __init__(self, name,  description, n_to=None, s_to=None, e_to=None, w_to=None, items=[Item("Test", "Test")]):
         self.name = name
         self.description = description
         self.n_to = n_to
@@ -13,7 +14,10 @@ class Room:
         self.items = items
 
     def __str__(self):
-        return '{}'.format(self.name)
+        room = 'Current Room: {}'.format(self.name)
+        for i in self.items:
+            room += '\nItems: {}'.format(i)
+        return room
 
     def get_name(self):
         return self.name
@@ -28,7 +32,7 @@ class Room:
         self.description = new_description
 
     def get_items(self):
-        return self.items
+        return '{}'.format(self.items)
 
     def set_items(self, new_items):
-        self.items = new_items
+        self.items.append(new_items)
