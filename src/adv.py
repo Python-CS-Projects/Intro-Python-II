@@ -74,6 +74,8 @@ def movePlayer(current):
             player1.current_room = player1.current_room.w_to
         else:
             print("Wrong way, try again.")
+    elif current == "i":
+        print("Player currently have: \n{}".format(player1))
     elif current == "q":
         print("Exited game!")
     else:
@@ -82,8 +84,8 @@ def movePlayer(current):
     # If the user enters a cardinal direction, attempt to move to the room there.
 
 
-player1.current_room.set_items(Item("Test2", "test2"))
-player1.current_room.set_items(Item("Test3", "test3"))
+player1.current_room.set_items(Item("t2", "test2"))
+player1.current_room.set_items(Item("t3", "test3"))
 
 
 def get_item(item):
@@ -95,7 +97,7 @@ def get_item(item):
             player1.set_item(i)
             return
         else:
-            print("Item Not in this room")
+            print("{} Not available in this room".format(i.name))
             return
 
 
@@ -115,7 +117,6 @@ def drop_item(item):
 whereTo = ""
 
 while whereTo is not "q":
-    print(getRoom())
     whereTo = input("Please enter a command:")
     if len(whereTo.split(" ")) == 1:
         movePlayer(whereTo)

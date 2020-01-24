@@ -9,7 +9,10 @@ class Player():
         self.items = items
 
     def __str__(self):
-        return str(self.name)
+        items = ""
+        for i in self.items:
+            items += "{}\n".format(i)
+        return items
 
     def get_name(self):
         return self.name
@@ -29,3 +32,7 @@ class Player():
 
     def remove_item(self, item):
         self.items.remove(item)
+
+    def get_items(self):
+        for i in self.items:
+            return str(i)
