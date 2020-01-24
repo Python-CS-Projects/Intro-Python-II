@@ -1,7 +1,6 @@
 from room import Room
 from player import Player
-
-
+from item import Item
 
 # Declare all the rooms
 
@@ -49,15 +48,8 @@ player1 = Player("Fritz", room["outside"])
 def getRoom():
     return player1.current_room
 
-
-def getItems():
-    return player1.current_room.get_items
-
     # * Prints the current description (the textwrap module might be useful here).
     # * Waits for user input and decides what to do.
-
-
-print(room['outside'])
 
 
 def movePlayer(current):
@@ -90,16 +82,54 @@ def movePlayer(current):
     # If the user enters a cardinal direction, attempt to move to the room there.
 
 
-print(getRoom())
+player1.current_room.set_items(Item("Test2", "test2"))
+player1.current_room.set_items(Item("Test3", "test3"))
+
+
+def get_item(item):
+    for i in player1.current_room.items:
+        if i.name == item:
+            # remove item from room
+            player1.current_room.on_take(i)
+            # Add item to player items
+            player1.set_item(i)
+            return
+        else:
+            print("Item Not in this room")
+            return
+
+
+def drop_item(item):
+    for i in player1.items:
+        if i.name == item:
+            # remove item from room
+            player1.current_room.on_drop(i)
+            # Add item to player items
+            player1.remove_item(i)
+            return
+        else:
+            print("Item dont below to player")
+            return
+
 
 whereTo = ""
 
 while whereTo is not "q":
-    whereTo = input("Where do you want to go?:")
-    movePlayer(whereTo)
     print(getRoom())
+    whereTo = input("Please enter a command:")
+    if len(whereTo.split(" ")) == 1:
+        movePlayer(whereTo)
+        print(getRoom())
+    else:
+        action = whereTo.split(" ")[0]
+        item = whereTo.split(" ")[1]
+        if action == "take" or action == "get":
+            get_item(item)
+        elif action == "drop":
+            drop_item(item)
+        else:
+            print("Invalid action")
 
-
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+            # Print an error message if the movement isn't allowed.
+            #
+            # If the user enters "q", quit the game.

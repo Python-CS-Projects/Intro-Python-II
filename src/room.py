@@ -4,7 +4,7 @@ from item import Item
 
 
 class Room:
-    def __init__(self, name,  description, n_to=None, s_to=None, e_to=None, w_to=None, items=[Item("Test", "Test")]):
+    def __init__(self, name,  description, n_to=None, s_to=None, e_to=None, w_to=None, items=[]):
         self.name = name
         self.description = description
         self.n_to = n_to
@@ -14,9 +14,9 @@ class Room:
         self.items = items
 
     def __str__(self):
-        room = 'Current Room: {}'.format(self.name)
+        room = 'Current Room: {} \nRoom Items:'.format(self.name)
         for i in self.items:
-            room += '\nItems: {}'.format(i)
+            room += '\n {}'.format(i)
         return room
 
     def get_name(self):
@@ -32,7 +32,18 @@ class Room:
         self.description = new_description
 
     def get_items(self):
-        return '{}'.format(self.items)
+        list_of_items = ""
+        for i in self.items:
+            list_of_items = '\nItems: {}'.format(i)
+        return list_of_items
 
     def set_items(self, new_items):
         self.items.append(new_items)
+
+    def on_take(self, take_item):
+        self.items.remove(take_item)
+        print("You have picked up {}".format(take_item))
+
+    def on_drop(self, take_item):
+        self.items.append(take_item)
+        print("You have dropped {}".format(take_item))
