@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player("Fritz", "outside")
+player1 = Player("Fritz", room["outside"])
 # Write a loop that:
 # * Prints the current room name
 
@@ -50,28 +50,41 @@ def getRoom():
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 def movePlayer(current):
+
     if current == "n":
-        # if room[getRoom()].n_to != "":
-        player1.set_current_room(room[str(player1.current_room).lower()].n_to)
+        if player1.current_room.n_to != None:
+            player1.current_room = player1.current_room.n_to
+        else:
+            print("Wrong way, try again.")
     elif current == "s":
-        player1.set_current_room(room[str(player1.current_room).lower()].s_to)
+        if player1.current_room.s_to != None:
+            player1.current_room = player1.current_room.s_to
+        else:
+            print("Wrong way, try again.")
     elif whereTo == "e":
-        player1.set_current_room(room[str(player1.current_room)].e_to)
+        if player1.current_room.e_to != None:
+            player1.current_room = player1.current_room.e_to
+        else:
+            print("Wrong way, try again.")
     elif current == "w":
-        player1.set_current_room(room[str(player1.current_room)].w_to)
+        if player1.current_room.w_to != None:
+            player1.current_room = player1.current_room.w_to
+        else:
+            print("Wrong way, try again.")
     elif current == "q":
         print("Exited game!")
     else:
         print("Invalid entry")
 
-# If the user enters a cardinal direction, attempt to move to the room there.
+    # If the user enters a cardinal direction, attempt to move to the room there.
 
+
+print(getRoom())
 
 whereTo = ""
 
 while whereTo is not "q":
     whereTo = input("Where do you want to go?:")
-    print(getRoom())
     movePlayer(whereTo)
     print(getRoom())
 
